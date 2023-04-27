@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'WebsiteZeply.apps.WebsitezeplyConfig'
+    'WebsiteZeply.apps.WebsitezeplyConfig',
+    'accounts'
 ]
 
 MIDDLEWARE = [
