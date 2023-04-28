@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/',views.logout_view,name='logout'),
     #SignUp
     path('signup/',views.signup_view,name='signup'),
+
+    path('indexdashboard/',views.dashboard_view,name='indexdashboard'),
 ]

@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'WebsiteZeply.apps.WebsitezeplyConfig',
-    'accounts'
+    'accounts',
+    'CoinZeply',
+    'WalletZeply',
+    'AddressUserCoin'
 ]
 
 MIDDLEWARE = [

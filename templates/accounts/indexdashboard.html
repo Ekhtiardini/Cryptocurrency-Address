@@ -1,0 +1,68 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load WalletZeply_tags %}
+{% block content %}
+<section class="section pt-0 position-relative pull-top">
+	<div class="container">
+		<div class="rounded shadow p-5 bg-white">
+			<div class="row">
+				
+				<div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
+					
+				</div>
+				<div class="col-lg-4 col-md-6 mt-5 mt-md-0 text-center">
+					<i class="ti-wallet text-primary h1"></i>
+					<h3 class="mt-4 text-capitalize h5 "><a class="nav-link" href="{% url 'WalletZeply:create_wallet' %}">Genrate your wallet</a>
+						</h3>
+					<p class="regular text-muted">You can create your wallet and receive your coins address on it.</p>
+				</div>
+				<div class="col-lg-4 col-md-12 mt-5 mt-lg-0 text-center">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% ShowWallet request.user.id as tottalWallet %}
+{% for wallet in tottalWallet %}
+
+<section class="feature section pt-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 ml-auto justify-content-center">
+				<!-- Feature Mockup -->
+				<div class="image-content" data-aos="fade-right">
+					<img class="img-fluid" src="{% static 'images/feature/feature-new-0111.jpg' %}" alt="iphone">
+				</div>
+			</div>
+			<div class="col-lg-6 mr-auto align-self-center">
+				<div class="feature-content">
+					<!-- Feature Title -->
+					
+					<h2><i class="ti-layout-column2-alt text-primary h1"></i>
+					<a href="https://themefisher.com/products/small-apps-free-app-landing-page-template/'"> {{wallet}}     Wallet</a>
+
+
+					</h2>
+					<!-- Feature Description -->
+					<p class="desc">Click on wallet to forward you to wallet page.</p>
+				</div>
+				<!-- Testimonial Quote -->
+				<div class="testimonial">
+					<p>
+						"You can have multiple coin addresses in each wallet."
+					</p>
+					<ul class="list-inline meta">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+	
+{% endfor %}
+
+
+
+{% endblock %}

@@ -4,6 +4,9 @@ from django.http import HttpResponse,JsonResponse
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse 
+from django.http import HttpResponseRedirect
+from WalletZeply.models import Wallet
 
 def login_view(request):
     if not request.user.is_authenticated:
@@ -15,7 +18,7 @@ def login_view(request):
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
-                    return redirect('/')
+                    return redirect("/")
             
         form = AuthenticationForm()
         context = {'form':form}
@@ -40,3 +43,7 @@ def signup_view(request):
         return render(request, 'accounts/signup.html',context)
     else:
         return redirect('/')
+
+@login_required(redirect_field_name="my_redirect_field")
+def dashboard_view(request):
+    return render(request, 'accounts/indexdashboard.html')
