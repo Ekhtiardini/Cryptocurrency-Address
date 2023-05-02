@@ -4,55 +4,84 @@
 
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
 
-<!--=============================
+	<!--=============================
 =            Sign Up            =
 ==============================-->
 
-<section class="user-login section">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="block">
-					<!-- Image -->
-					<div class="image align-self-center"><img class="img-fluid" src="{% static 'images/Login/sign-up.jpg' %}" alt="desk-image">
-					</div>
-					<!-- Content -->
-					<div class="content text-center">
-						<div class="logo">
-							<a href="index.html"><img src="{% static 'images/logo1.png' %}" alt=""></a>
+	<section class="user-login section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="block">
+						<!-- Image -->
+						<div class="image align-self-center"><img class="img-fluid"
+								src="{% static 'images/Login/sign-up.jpg' %}" alt="desk-image">
 						</div>
-						<div class="title-text">
-							<h3>Sign Up for New Account</h3>
-						</div>
-						<form method="post" action="{% url 'accounts:signup' %}">
-							{% csrf_token %}
-							<!-- Username -->
-							<input type="text" name="username" class="form-control main"  placeholder="User Name" required>
-							<!-- Password -->
-							<input type="password" name="password1" class="form-control main"   placeholder="Password" required>
-							<input type="password" name="password2" class="form-control main"   placeholder="Confirm Password" required>
-							<!-- Submit Button -->
-							<button class="btn btn-main-md" type="submit">sign up</button>
-						</form>
-						<div class="new-acount">
-							<p>By clicking “Sign Up” I agree to <a href="#">Terms of Conditions.</a></p>
-							<p>Anready have an account? <a href="{% url 'accounts:login' %}">SIGN IN</a></p>
+						<!-- Content -->
+						<div class="content text-center">
+							<div class="logo">
+								<a href="index.html"><img src="{% static 'images/logo1.png' %}" alt=""></a>
+							</div>
+							<div class="title-text">
+								<h3>Sign Up for New Account</h3>
+							</div>
+							<form method="post" action="{% url 'accounts:signup' %}">
+								{% csrf_token %}
+								<!-- Username -->
+								<input type="text" name="username" class="form-control main" placeholder="User Name"
+									required>
+								<!-- Password -->
+								<input type="password" name="password1" class="form-control main" placeholder="Password"
+									required>
+								<input type="password" name="password2" class="form-control main"
+									placeholder="Confirm Password" required>
+								<!-- Submit Button -->
+								<button class="btn btn-main-md" type="submit">sign up</button>
+								{% if messages %}
+							{% for message in messages %}
+							<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe
+								}}</div>
+							{% endfor %}
+							{% endif %}
+
+							{% if form.errors %}
+							<div class="alert alert-error">
+								<h4>Please fix the following errors</h4>
+								<ul>
+									{% for field in form %}
+									{% if field.errors %}
+									{% for error in field.errors %}
+									<li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+									{% endfor %}
+									{% endif %}
+									{% endfor %}
+								</ul>
+								{% if form.non_field_errors %}
+								{{ form.non_field_errors }}
+								{% endif %}
+							</div>
+							{% endif %}
+							</form>
+							
+							<div class="new-acount">
+								<p>By clicking “Sign Up” I agree to <a href="#">Terms of Conditions.</a></p>
+								<p>Anready have an account? <a href="{% url 'accounts:login' %}">SIGN IN</a></p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</section>
+
+	<!--====  End of Sign Up  ====-->
+
+
+	<!-- To Top -->
+	<div class="scroll-top-to">
+		<i class="ti-angle-up"></i>
 	</div>
-</section>
 
-<!--====  End of Sign Up  ====-->
-
-
-  <!-- To Top -->
-  <div class="scroll-top-to">
-    <i class="ti-angle-up"></i>
-  </div>
-  
 </body>
 
 {% endblock %}

@@ -5,41 +5,67 @@
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
 
 
-<section class="user-login section" >
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="block">
-					<!-- Image -->
-					<div class="image align-self-center"><img class="img-fluid" src="{% static 'images/Login/front-desk-sign-in.jpg' %}"
-							alt="desk-image"></div>
-					<!-- Content -->
-					<div class="content text-center">
-						<div class="logo">
-							<a href="index.html"><img src="{% static 'images/logo1.png' %}" alt=""></a>
-						</div>
-						<div class="title-text">
-							<h3>Sign in to To Your Account</h3>
-						</div>
-						<form class="form-signin" method ="post" action="{% url 'accounts:login' %}">
-							{% csrf_token %}
-							<!-- Username -->
-							<input class="form-control main" type="text" name ="username" placeholder="Username" required autofocus>
-							<!-- Password -->
-							<input class="form-control main" type="password" name="password" placeholder="Password" required>
-							<!-- Submit Button -->
-							<button class="btn btn-main-sm">sign in</button>
-						</form>
-						<div class="new-acount">
-							<a href="contact.html">Forget your password?</a>
-							<p>Don't Have an account? <a href="sign-up.html"> SIGN UP</a></p>
+	<section class="user-login section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="block">
+						<!-- Image -->
+						<div class="image align-self-center"><img class="img-fluid"
+								src="{% static 'images/Login/front-desk-sign-in.jpg' %}" alt="desk-image"></div>
+						<!-- Content -->
+						<div class="content text-center">
+							<div class="logo">
+								<a href="index.html"><img src="{% static 'images/logo1.png' %}" alt=""></a>
+							</div>
+							<div class="title-text">
+								<h3>Sign in to To Your Account</h3>
+							</div>
+							<form class="form-signin" method="post" action="{% url 'accounts:login' %}">
+								{% csrf_token %}
+								<!-- Username -->
+								<input class="form-control main" type="text" name="username" placeholder="Username"
+									required autofocus>
+								<!-- Password -->
+								<input class="form-control main" type="password" name="password" placeholder="Password"
+									required>
+								<!-- Submit Button -->
+								<button class="btn btn-main-sm">sign in</button>
+							</form>
+							{% if messages %}
+							{% for message in messages %}
+							<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe
+								}}</div>
+							{% endfor %}
+							{% endif %}
+
+							{% if form.errors %}
+							<div class="alert alert-error">
+								<h4>Please fix the following errors</h4>
+								<ul>
+									{% for field in form %}
+									{% if field.errors %}
+									{% for error in field.errors %}
+									<li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+									{% endfor %}
+									{% endif %}
+									{% endfor %}
+								</ul>
+								{% if form.non_field_errors %}
+								{{ form.non_field_errors }}
+								{% endif %}
+							</div>
+							{% endif %}
+							<div class="new-acount">
+								<a href="contact.html">Forget your password?</a>
+								<p>Don't Have an account? <a href="sign-up.html"> SIGN UP</a></p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 
 

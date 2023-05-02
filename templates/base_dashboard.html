@@ -54,11 +54,20 @@
                         <li><a class="nav-link" href="{% url 'accounts:indexdashboard' %}">Dashboard</a>
                     </li>
                     <li class="nav-item @@about">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
+						<a class="nav-link" href="#"></a>
+					</li>
+                    <li class="nav-item @@about">
+						<a class="nav-link" href="#"></a>
+					</li>
                     <li class="nav-item @@contact">
                     {% if request.user.is_authenticated %}
                         <li class="nav-link dropdown-toggle">Logged in as {{request.user.username }} </li>
+                        <li class="nav-item @@about">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item @@about">
+                            <a class="nav-link" href="#"></a>
+                        </li>
                         <li><a class="nav-link dropdown-toggle" href="{% url 'accounts:logout' %}">     Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'accounts:signup' %}" class="nav-link dropdown-toggle" >Create an account</a></li> 
@@ -100,23 +109,24 @@
 
 {% endblock %}
 
+
 <footer>
     <div class="footer-main">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-12 m-md-auto align-self-center">
                     <div class="block">
-                        <a href="index.html"><img src="{% static 'images/logo-alt.png' %}" alt="footer-logo"></a>
+                        <a href="#"><img src="{% static 'images/logo1.png' %}" alt="footer-logo"></a>
                         <!-- Social Site Icons -->
                         <ul class="social-icon list-inline">
                             <li class="list-inline-item">
-                                <a href="https://www.facebook.com/themefisher"><i class="ti-facebook"></i></a>
+                                <a href="#"><i class="ti-facebook"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="https://twitter.com/themefisher"><i class="ti-twitter"></i></a>
+                                <a href="#"><i class="ti-twitter"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="https://www.instagram.com/themefisher/"><i class="ti-instagram"></i></a>
+                                <a href="#"><i class="ti-instagram"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -127,9 +137,9 @@
                         <h6>Product</h6>
                         <!-- links -->
                         <ul>
-                            <li><a href="team.html">Teams</a></li>
-                            <li><a href="blog.html">Blogs</a></li>
-                            <li><a href="FAQ.html">FAQs</a></li>
+                            <li><a href="#">Teams</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
@@ -139,9 +149,9 @@
                         <h6>Resources</h6>
                         <!-- links -->
                         <ul>
-                            <li><a href="sign-up.html">Singup</a></li>
-                            <li><a href="sign-in.html">Login</a></li>
-                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="#">Singup</a></li>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Blog</a></li>
                         </ul>
                     </div>
                 </div>
@@ -151,10 +161,10 @@
                         <h6>Company</h6>
                         <!-- links -->
                         <ul>
-                            <li><a href="career.html">Career</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="team.html">Investor</a></li>
-                            <li><a href="privacy.html">Terms</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Investor</a></li>
+                            <li><a href="#">Terms</a></li>
                         </ul>
                     </div>
                 </div>
@@ -164,10 +174,10 @@
                         <h6>Company</h6>
                         <!-- links -->
                         <ul>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

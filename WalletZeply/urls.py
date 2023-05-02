@@ -4,6 +4,5 @@ from . import views
 app_name = 'WalletZeply'
 
 urlpatterns = [
-    #Login
     path('create_wallet/',views.create_wallet,name='create_wallet'),
 ]

@@ -11,6 +11,7 @@ urlpatterns = [
     path('',include('WebsiteZeply.urls')),
     path('accounts/',include('accounts.urls')),
     path('WalletZeply/',include('WalletZeply.urls')),
+    path('AddressUserCoin/',include('AddressUserCoin.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)

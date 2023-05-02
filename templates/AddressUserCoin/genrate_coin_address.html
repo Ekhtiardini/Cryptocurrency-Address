@@ -1,0 +1,110 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load WalletZeply_tags %}
+{% block content %}
+
+<section class="section blog-single bg-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 m-auto">
+
+                <div class="about-author">
+                    <h2 class=" btn-rounded-icon">Genrate Bitcoin Address for {{wallet.wallet_name}}</h2>
+                    <div class="media">
+                        <!-- Author Image -->
+                        <div class="image">
+
+                        </div>
+
+                        <div class="media-body align-self-center">
+                            
+                            <form method="POST" action="{% url 'AddressUserCoin:Wallet-Genrate-Coin' wid=wallet.id %}">
+
+                                {% csrf_token %}
+                                <input id="addressUC_walletid" type="hidden" name="addressUC_walletid" value="{{wallet.id}}">
+                                <input id="addressUC_walletid" type="hidden" name="addressUC_Coinid" value=1>
+                                
+                                
+                                {% RegBTC wallet.wallet_name as BTC_Address %}
+                                <input class="form-control main" id="addressUC_walletid" type="text" name="addressUC_address" value={{BTC_Address}}
+                                placeholder="{{BTC_Address}}">
+                                <input type="text" name="addressUC_des" class="form-control main"
+                                placeholder="Address description" required>
+
+
+
+                                <p type=" hidden">{% RegBTCWall wallet.id 1 as RegAd %}</p>
+
+                                {% if RegAd == True %}
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"></li>
+                                    <button class="btn btn-rounded-icon" type="submit">Generate</button>
+                                </li>
+                                </ul>
+
+                                {% else %}
+                                <div class="alert">You have a Register Address for Your wallet
+                                </div>
+                                {% endif %}
+
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="btn btn-rounded-icon">
+                                    {{message}}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+
+                                {% if form.errors %}
+                                <div class="alert alert-error">
+                                    <h4>Please fix the following errors</h4>
+                                    <ul>
+                                        {% for field in form %}
+                                        {% if field.errors %}
+                                        {% for error in field.errors %}
+                                        <li><a href="#" class="error">{{ error|escape }}</a></li>
+                                        {% endfor %}
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                    {% if form.non_field_errors %}
+                                    {{ form.non_field_errors }}
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="user-login section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="block">
+
+                    <div class="content text-center">
+                        <div class="logo">
+                            <a href="index.html"><img src="{% static 'images/logo1.png' %}" alt=""></a>
+                        </div>
+                        <div class="title-text">
+                            <h3>Register Address for Your wallet</h3>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

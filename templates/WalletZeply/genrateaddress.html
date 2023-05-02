@@ -16,30 +16,7 @@
                         <div class="title-text">
                             <h3>Create a Wallet</h3>
                         </div>
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}
-                        </div>
-                        {% endfor %}
-                        {% endif %}
 
-                        {% if form.errors %}
-                        <div class="alert alert-error">
-                            <h4>Please fix the following errors</h4>
-                            <ul>
-                                {% for field in form %}
-                                {% if field.errors %}
-                                {% for error in field.errors %}
-                                <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
-                                {% endfor %}
-                                {% endif %}
-                                {% endfor %}
-                            </ul>
-                            {% if form.non_field_errors %}
-                            {{ form.non_field_errors }}
-                            {% endif %}
-                        </div>
-                        {% endif %}
                         <form method="post" action="{% url 'WalletZeply:create_wallet' %}">
 
                             {% csrf_token %}
@@ -48,18 +25,43 @@
                                 required>
                             <input type="text" name="wallet_des" class="form-control main"
                                 placeholder="Wallet description" required>
-                            <input type="hidden" name="wallet_user" class="form-control main" placeholder="User Id"
-                                required>
-
-                            <p type=" hidden">{% CountWalletUser request.user.id  as Count%}</p>
-
+                            
+                            <input id="wallet_user" type="hidden" name="wallet_user" value="{{request.user.id}}">
+                            <p type="hidden"></p>
+                            {% CountWalletUser request.user.id as Count %}
                             {% if Count == True %}
                             <button class="btn btn-main-md" type="submit">Create</button>
-                            
+
                             {% else %}
-                            <p><a class="nav-link dropdown-toggle">You have two wallet</a></p>
+                            <div class="alert">You have two wallet
+                            </div>
                             {% endif %}
 
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe
+                                }}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            {% if form.errors %}
+                            <div class="alert alert-error">
+                                <h4>Please fix the following errors</h4>
+                                <ul>
+                                    {% for field in form %}
+                                    {% if field.errors %}
+                                    {% for error in field.errors %}
+                                    <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                                {% if form.non_field_errors %}
+                                {{ form.non_field_errors }}
+                                {% endif %}
+                            </div>
+                            {% endif %}
 
                         </form>
 

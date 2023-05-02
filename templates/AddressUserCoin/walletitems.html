@@ -1,0 +1,66 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+{% load WalletZeply_tags %}
+{% block content %}
+
+
+
+<section class="section blog-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 m-auto">
+
+				<div class="about-author">
+					<h2>Your Wallet is {{wallet.wallet_name}}</h2>
+					<div class="media">
+						<div class="media-body align-self-center">
+							{% ShowWalletItems wallet.id as WalletItemAddress %}
+							{% for ItemCoin in WalletItemAddress %}
+
+							<p>{{ItemCoin.addressUC_address}} AddressUserCoin</p>
+
+
+							{% endfor %}
+							<ul class="list-inline social-links">
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="call-to-action-app section bg-blue">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="{% url 'AddressUserCoin:Wallet-Genrate-Coin' wid=wallet.id %}"
+							class="btn btn-rounded-icon">
+							<i class="ti-hand-point-right"></i>
+							Generate BTC - Bitcoin
+						</a>
+					</li>
+				</ul>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="{% url 'AddressUserCoin:Wallet-Genrate-LTC' wid=wallet.id %}"
+							class="btn btn-rounded-icon">
+							<i class="ti-hand-point-right"></i>
+							Generate LTC - Litecoin
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+{% endblock %}
