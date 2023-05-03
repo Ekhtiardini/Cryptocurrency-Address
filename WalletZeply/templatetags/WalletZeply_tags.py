@@ -3,11 +3,13 @@ from WalletZeply.models import Wallet
 from CoinZeply.models import Coin
 from AddressUserCoin.BTC_Genrate import BTC_Gen
 from AddressUserCoin.LTC_Genrate import LTC_Gen
+from AddressUserCoin.ETH_Genrate import ETH_Gen
 from AddressUserCoin.models import AddressUC
 
 
 
 register = template.Library()
+
 
 @register.simple_tag(name='ShowWallet')
 def function(userid):
@@ -30,7 +32,7 @@ def function(walletid):
 
 @register.simple_tag(name='ShowCoin')
 def function(Coinid):
-    coin = Coin.objects.filter(id=Coinid)
+    coin = Coin.objects.filter(coin_name=Coinid)
     return coin
 
 
@@ -42,8 +44,13 @@ def function(NameW):
 
 @register.simple_tag(name='RegLTC')
 def function(NameW):
-    BTC_add=LTC_Gen(NameW)
-    return BTC_add
+    LTC_add=LTC_Gen(NameW)
+    return LTC_add
+
+@register.simple_tag(name='RegETH')
+def function(NameW):
+    ETH_add=ETH_Gen(NameW)
+    return ETH_add
 
 @register.simple_tag(name='RegBTCWall')
 def function(Wallid,Coinid):
@@ -59,5 +66,12 @@ def function(Wallid,Coinid):
     if RegAdd == 0:
         return True
     else:
-        print (RegAdd)
+        return False
+
+@register.simple_tag(name='RegETHWall')
+def function(Wallid,Coinid):
+    RegAdd = AddressUC.objects.filter(addressUC_walletid=Wallid,addressUC_Coinid=Coinid).count()
+    if RegAdd == 0:
+        return True
+    else:
         return False

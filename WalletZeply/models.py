@@ -8,5 +8,5 @@ class Wallet(models.Model):
     wallet_created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{} - {}".format(self.wallet_name,self.id)
+        return self.wallet_name
     

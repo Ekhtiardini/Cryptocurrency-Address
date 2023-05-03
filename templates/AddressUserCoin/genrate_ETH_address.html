@@ -9,7 +9,7 @@
             <div class="col-md-10 m-auto">
 
                 <div class="about-author">
-                    <h2 class=" btn-rounded-icon">Genrate Bitcoin Address for {{wallet.wallet_name}}</h2>
+                    <h2 class=" btn-rounded-icon">Genrate Ethereum Address for {{wallet.wallet_name}}</h2>
                     <div class="media">
                         <!-- Author Image -->
                         <div class="image">
@@ -17,30 +17,29 @@
                         </div>
 
                         <div class="media-body align-self-center">
-
-                            <form method="POST" action="{% url 'AddressUserCoin:Wallet-Genrate-Coin' wid=wallet.id %}">
+                            
+                            <form method="POST" action="{% url 'AddressUserCoin:Wallet-Genrate-ETH' wid=wallet.id %}">
 
                                 {% csrf_token %}
-                                <input id="addressUC_walletid" type="hidden" name="addressUC_walletid"
-                                    value="{{wallet.id}}">
-                                <input id="addressUC_walletid" type="hidden" name="addressUC_Coinid" value=1>
-
-
-                                {% RegBTC wallet.wallet_name as BTC_Address %}
-                                <input class="form-control main" id="addressUC_walletid" type="text"
-                                    name="addressUC_address" value={{BTC_Address}} placeholder="{{BTC_Address}}">
+                                <input id="addressUC_walletid" type="hidden" name="addressUC_walletid" value="{{wallet.id}}">
+                                <input id="addressUC_walletid" type="hidden" name="addressUC_Coinid" value=3>
+                                
+                                
+                                {% RegETH wallet.wallet_name as LTC_Address %}
+                                <input class="form-control main" id="addressUC_walletid" type="text" name="addressUC_address" value={{LTC_Address}}
+                                placeholder="{{LTC_Address}}">
                                 <input type="text" name="addressUC_des" class="form-control main"
-                                    placeholder="Address description" required>
+                                placeholder="Address description" required>
 
 
 
-                                <p type=" hidden">{% RegBTCWall wallet.id 1 as RegAd %}</p>
-
+                                <p type=" hidden">{% RegETHWall wallet.id 3 as RegAd %}</p>
+                                
                                 {% if RegAd == True %}
                                 <ul class="list-inline">
                                     <li class="list-inline-item"></li>
                                     <button class="btn btn-rounded-icon" type="submit">Generate</button>
-                                    </li>
+                                </li>
                                 </ul>
 
                                 {% else %}
@@ -55,6 +54,7 @@
                                 </div>
                                 {% endfor %}
                                 {% endif %}
+
                             </form>
                         </div>
                     </div>

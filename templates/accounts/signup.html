@@ -38,39 +38,24 @@
 								<!-- Submit Button -->
 								<button class="btn btn-main-md" type="submit">sign up</button>
 								{% if messages %}
-							{% for message in messages %}
-							<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe
-								}}</div>
-							{% endfor %}
-							{% endif %}
-
-							{% if form.errors %}
-							<div class="alert alert-error">
-								<h4>Please fix the following errors</h4>
-								<ul>
-									{% for field in form %}
-									{% if field.errors %}
-									{% for error in field.errors %}
-									<li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
-									{% endfor %}
-									{% endif %}
-									{% endfor %}
-								</ul>
-								{% if form.non_field_errors %}
-								{{ form.non_field_errors }}
+								{% for message in messages %}
+								<div class="btn btn-rounded-icon">
+									{{message}}
+								</div>
+								{% endfor %}
 								{% endif %}
-							</div>
-							{% endif %}
-							</form>
-							
-							<div class="new-acount">
-								<p>By clicking “Sign Up” I agree to <a href="#">Terms of Conditions.</a></p>
-								<p>Anready have an account? <a href="{% url 'accounts:login' %}">SIGN IN</a></p>
-							</div>
+						</div>
+						{% endif %}
+						</form>
+
+						<div class="new-acount">
+							<p>By clicking “Sign Up” I agree to <a href="#">Terms of Conditions.</a></p>
+							<p>Anready have an account? <a href="{% url 'accounts:login' %}">SIGN IN</a></p>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</section>
 

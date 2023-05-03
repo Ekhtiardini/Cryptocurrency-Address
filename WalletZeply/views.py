@@ -10,6 +10,7 @@ def create_wallet(request):
         if form.is_valid():
             form.save()
             messages.add_message(request,messages.SUCCESS,"You're Created Wallet Successfully")
+            return render(request, 'accounts/indexdashboard.html')
         else :
             messages.add_message(request,messages.ERROR,"Your Wallet didn't submited")
         

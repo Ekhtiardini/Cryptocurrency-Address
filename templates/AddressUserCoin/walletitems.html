@@ -9,24 +9,34 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 m-auto">
+				
+				{% ShowWalletItems wallet.id as WalletItemAddress %}
+				{% for ItemCoin in WalletItemAddress %}
 
+					{% ShowCoin ItemCoin.addressUC_Coinid as CoinImg %}
+					{% for ItemC in CoinImg %}
 				<div class="about-author">
-					<h2>Your Wallet is {{wallet.wallet_name}}</h2>
+					<h2>{{ItemC.coin_name}}</h2>
 					<div class="media">
+						<div class="image">
+							<img class="d-flex justify-content-center align-self-center" src="{{ItemC.coin_image.url}}" alt="Coin-image">
+						</div>
+						{% endfor %}
 						<div class="media-body align-self-center">
-							{% ShowWalletItems wallet.id as WalletItemAddress %}
-							{% for ItemCoin in WalletItemAddress %}
+							<p>{{ItemCoin.addressUC_address}} </p>
+							<p>
 
-							<p>{{ItemCoin.addressUC_address}} AddressUserCoin</p>
-
-
-							{% endfor %}
-							<ul class="list-inline social-links">
-
-							</ul>
+							</p>
+							<p>Address User Coin for {{wallet.wallet_name}}</p>
+							<p>
+								
+							</p>
 						</div>
 					</div>
 				</div>
+				
+				{% endfor %}
+				
 			</div>
 		</div>
 	</div>
@@ -46,6 +56,7 @@
 						</a>
 					</li>
 				</ul>
+				
 				<ul class="list-inline">
 					<li class="list-inline-item">
 						<a href="{% url 'AddressUserCoin:Wallet-Genrate-LTC' wid=wallet.id %}"
@@ -55,6 +66,28 @@
 						</a>
 					</li>
 				</ul>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="{% url 'AddressUserCoin:Wallet-Genrate-ETH' wid=wallet.id %}"
+							class="btn btn-rounded-icon">
+							<i class="ti-hand-point-right"></i>
+							Generate ETH - Ethereum
+						</a>
+					</li>
+				</ul>
+				{% if messages %}
+				{% for message in messages %}
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a href="#"
+							class="btn btn-rounded-icon">
+							<i class="ti-hand-point-right"></i>
+							{{message}}
+						</a>
+					</li>
+				</ul>
+				{% endfor %}
+				{% endif %}
 			</div>
 		</div>
 	</div>

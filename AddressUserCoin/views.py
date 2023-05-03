@@ -18,7 +18,9 @@ def WalletGenrateCoin(request,wid):
         form = AddressUCForm(request.POST)
         if form.is_valid():
             form.save()
+            context={'wallet':wallet}
             messages.add_message(request,messages.SUCCESS,"You're Created  Successfully")
+            return render(request, 'AddressUserCoin/walletitems.html',context) 
         else :
             messages.add_message(request,messages.ERROR,"Your  didn't Submited")
     
@@ -33,7 +35,9 @@ def WalletGenrateLTC(request,wid):
         form = AddressUCForm(request.POST)
         if form.is_valid():
             form.save()
+            context={'wallet':wallet}
             messages.add_message(request,messages.SUCCESS,"You're Created  Successfully")
+            return render(request, 'AddressUserCoin/walletitems.html',context) 
         else :
             messages.add_message(request,messages.ERROR,"Your  didn't Submited")
     
@@ -41,3 +45,19 @@ def WalletGenrateLTC(request,wid):
     context = {'wallet':wallet,'form':form}
     return render(request, 'AddressUserCoin/generate_LTC_adddress.html',context) 
 
+@login_required(redirect_field_name="my_redirect_field")
+def WalletGenrateETH(request,wid):
+    wallet=get_object_or_404(Wallet,pk=wid)
+    if request.method == "POST":
+        form = AddressUCForm(request.POST)
+        if form.is_valid():
+            form.save()
+            context={'wallet':wallet}
+            messages.add_message(request,messages.SUCCESS,"You're Created  Successfully")
+            return render(request, 'AddressUserCoin/walletitems.html',context) 
+        else :
+            messages.add_message(request,messages.ERROR,"Your  didn't Submited")
+    
+    form = AddressUCForm()
+    context = {'wallet':wallet,'form':form}
+    return render(request, 'AddressUserCoin/genrate_ETH_address.html',context) 

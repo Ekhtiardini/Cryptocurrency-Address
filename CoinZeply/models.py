@@ -6,8 +6,9 @@ class Coin(models.Model):
     coin_name=models.CharField(max_length=255)
     coin_sign=models.CharField(max_length=8)
     concoin_des = models.TextField(null=True)
+    coin_image = models.ImageField(upload_to='CoinZeply/',default='CoinZeply/default.jpg')
 
     def __str__(self):
         return self.coin_name
+    
 
-# Create your models here.

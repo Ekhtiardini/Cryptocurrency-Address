@@ -18,11 +18,11 @@ def login_view(request):
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
-                    messages.add_message(request,messages.SUCCESS,"Your Login Success")
+                    messages.add_message(request,messages.SUCCESS,"You are Login Success")
                     return redirect("/")
                     
                 else :
-                    messages.add_message(request,messages.ERROR,"Your Login Failed")
+                    messages.add_message(request,messages.ERROR,"You are Login Failed")
             
         form = AuthenticationForm()
         context = {'form':form}
